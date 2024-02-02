@@ -9,6 +9,7 @@ public class JogoDoAdivinha {
     static void gameStart() {
 
         int numChoice = numberChoice();
+        
 
         Scanner tec = new Scanner(System.in).useLocale(Locale.US);
 
@@ -20,19 +21,22 @@ public class JogoDoAdivinha {
         for (int g=0; g < numerosTentativas; g++) {
             int number = tec.nextInt();
             tentativasRealizadas++;
-            if (tentativasRealizadas > numerosTentativas) {
-                System.out.println("Game Over");
-            }else if (number > numChoice) {
-                System.out.println("Escolha um numero menor.");
-            }else if (number < numChoice) {
-                System.out.println("Escolha um numero maior.");
-            }else {
-                System.out.println("Parabéns, você acertou em "+ tentativasRealizadas + " tentativas.");
+
+            if (number == numChoice) {
+                System.out.println("Parabéns! você acertou em "+tentativasRealizadas+" tentativas.");
                 break;
+            } else if (tentativasRealizadas >= 3) {
+                System.out.println("Game Over! Reinicie o jogo.");
+                break;
+            } else if (number > numChoice) {
+                System.out.println("Escolha um numero menor");
+            } else if (number < numChoice) {
+                System.out.println("Escolha um numero maior");
             }
+
         }
 
-        System.out.println("O numero era " + numChoice + ". Obrigado Por Jogar!");
+        System.out.println("\nO numero era " + numChoice + ". Obrigado Por Jogar!");
     }
 
     static int numberChoice() {
